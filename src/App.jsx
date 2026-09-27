@@ -37,12 +37,6 @@ function Countdown() {
   </div>;
 }
 
-function calendarUrl() {
-  const format = (date) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  const params = new URLSearchParams({ action: 'TEMPLATE', text: `Casamiento de ${names}`, dates: `${format(data.weddingDate)}/${format(data.endDate)}`, details: '¡Te esperamos para compartir nuestro gran día!', location: `${data.ceremony.venue}, ${data.ceremony.address}`, ctz: data.timeZone });
-  return `https://calendar.google.com/calendar/render?${params}`;
-}
-
 function EventSection({ event, icon }) {
   const date = new Date(event.date);
   const day = new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: 'short', timeZone: data.timeZone }).format(date).replace('.', '');
@@ -109,18 +103,17 @@ export default function App() {
           <h2 className="script-heading">{data.welcome.title}</h2>
           <p className="intro-copy">{data.welcome.text}</p>
           <Countdown />
-          <a className="calendar-link" href={calendarUrl()} {...external}><Icon name="calendar" />Agendar recordatorio</a>
         </Reveal>
       </section>
 
       <div className="little-divider"><span /><Icon name="heart" /><span /></div>
       <EventSection event={data.ceremony} icon="rings" />
 
-      <section className="gallery-section" aria-label="Nuestra historia en fotos"><Reveal><span className="tiny-label">VOS, YO Y TODO LO QUE VIENE</span><Gallery photos={data.gallery} /><p className="gallery-quote">{data.galleryQuote}</p></Reveal></section>
+      <section className="gallery-section" aria-label="Nuestra historia en fotos"><Reveal><Gallery photos={data.gallery} /><p className="gallery-quote">{data.galleryQuote}</p></Reveal></section>
 
       <section className="gifts section-pad"><Reveal><Icon name="gift" /><h2>{data.gifts.title}</h2><p className="intro-copy">{data.gifts.text}</p><button className="button" onClick={() => setGiftsOpen(true)}>Ver datos bancarios</button></Reveal></section>
 
-      <section className="rsvp section-pad"><Reveal><Icon name="heart" /><span className="tiny-label">EL MEJOR PLAN ES CON VOS</span><h2 className="script-heading">{data.rsvp.title}</h2><p className="intro-copy">{data.rsvp.text}</p><a className="button rsvp-button" href={data.rsvp.formsUrl} {...external}>{data.rsvp.button}</a><p className="rsvp-deadline">{data.rsvp.deadline}</p></Reveal></section>
+      <section className="rsvp section-pad"><Reveal><Icon name="heart" /><h2 className="script-heading">{data.rsvp.title}</h2><p className="intro-copy">{data.rsvp.text}</p><a className="button rsvp-button" href={data.rsvp.formsUrl} {...external}>{data.rsvp.button}</a></Reveal></section>
 
       <footer><Reveal><p className="footer-names">{names}</p><p>{data.closing}</p><Icon name="heart" /></Reveal></footer>
     </main>

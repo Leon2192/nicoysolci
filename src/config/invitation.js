@@ -1,6 +1,9 @@
 // EDITÁ LOS DATOS DE LA INVITACIÓN ACÁ.
-// Los datos son de ejemplo. Reemplazá los enlaces antes de compartir la invitación.
+// Los datos bancarios siguen siendo de ejemplo.
 // Para fotos propias, guardalas en public/images y usá "/images/tu-foto.jpg".
+// Fecha única para la cuenta regresiva y todas las secciones (hora argentina).
+const eventDate = '2027-04-02T19:00:00-03:00';
+
 export const invitation = {
   couple: { first: 'Nico', second: 'Solci' },
   social: {
@@ -12,8 +15,7 @@ export const invitation = {
     imageWidth: 350,
     imageHeight: 350,
   },
-  weddingDate: '2027-09-27T20:00:00-03:00',
-  endDate: '2027-09-28T05:00:00-03:00',
+  weddingDate: eventDate,
   timeZone: 'America/Argentina/Buenos_Aires',
   hero: {
     image: '/assets/portada.jpg',
@@ -31,18 +33,18 @@ export const invitation = {
   // Opcional: agregá un MP3 en public/music y su ruta para mostrar el reproductor.
   music: { src: '', title: 'Nuestra canción' },
   ceremony: {
-    title: 'Ceremonia',
-    venue: 'Iglesia de San Francisco',
+    title: 'Lugar del Evento',
+    venue: 'Círculo Olivos',
     intro: 'Te esperamos el',
-    date: '2027-09-27T20:00:00-03:00',
-    address: 'Alsina 380, Buenos Aires',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Iglesia+San+Francisco+Alsina+380+Buenos+Aires',
+    date: eventDate,
+    address: 'San Lorenzo 60, La Lucila, Provincia de Buenos Aires',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=C%C3%ADrculo+Olivos%2C+San+Lorenzo+60%2C+La+Lucila%2C+Provincia+de+Buenos+Aires',
   },
   celebration: {
     title: 'Celebración',
     venue: 'Estancia Los Olivos',
     intro: 'La celebración será en',
-    date: '2027-09-27T21:00:00-03:00',
+    date: eventDate,
     address: 'Av. del Libertador 1500, Buenos Aires',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+del+Libertador+1500+Buenos+Aires',
   },
@@ -62,7 +64,7 @@ export const invitation = {
     alt: `Nico y Solci · Recuerdo ${number}`,
     position: 'center',
   })),
-  galleryQuote: 'Lo mejor de la vida es compartirla con vos.',
+  galleryQuote: 'Allá donde nos lleve la vida, juntos',
   gifts: {
     title: 'Regalos',
     text: 'Lo más importante es tu presencia. Pero si deseás hacernos un regalo, te compartimos nuestros datos.',
@@ -74,9 +76,7 @@ export const invitation = {
   rsvp: {
     title: 'Confirmá tu asistencia',
     text: 'Hay un lugar especial para vos en nuestra historia. ¡Nos encantaría que estés ahí!',
-    deadline: 'Confirmá antes del 1 de septiembre de 2027',
-    // Reemplazar por el enlace público real: https://forms.gle/...
-    formsUrl: 'https://docs.google.com/forms/',
+    formsUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSd3oMPVqPbz69-mlC9GLZ_3Y1e0WJbdrQoQNW7p1dLSY--L_A/viewform',
     button: 'Confirmar asistencia',
   },
   closing: '¡Te esperamos para celebrar el amor!',
