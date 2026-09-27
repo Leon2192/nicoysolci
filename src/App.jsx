@@ -92,10 +92,12 @@ export default function App() {
   return <>
     <a className="skip-link" href="#bienvenida">Ir a la invitación</a>
     <main className="invitation">
-      <header className="hero">
+      <header className={`hero${data.hero.imageIncludesText ? ' hero-artwork' : ''}`}>
         <img className="hero-image" src={data.hero.image} alt={data.hero.alt} style={{ objectPosition: data.hero.position }} fetchPriority="high" />
+        {data.hero.imageIncludesText ? <h1 className="sr-only">{names} · {data.hero.title}</h1> : <>
         <div className="hero-shade" />
         <div className="hero-content"><p className="eyebrow">{data.hero.eyebrow}</p><h1>{names}</h1><p className="hero-subtitle">{data.hero.title}</p><span className="hero-line" /><p className="hero-date">{new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: data.timeZone }).format(new Date(data.weddingDate)).replaceAll('/', ' . ')}</p></div>
+        </>}
         <a className="scroll-cue" href="#bienvenida" aria-label="Descubrir la invitación"><Icon name="arrow" /></a>
       </header>
 

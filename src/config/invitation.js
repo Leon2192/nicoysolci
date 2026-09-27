@@ -7,8 +7,10 @@ export const invitation = {
   endDate: '2027-09-28T05:00:00-03:00',
   timeZone: 'America/Argentina/Buenos_Aires',
   hero: {
-    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=85',
-    alt: 'Una pareja celebrando su casamiento en un jardín',
+    image: '/assets/portada.jpg',
+    alt: 'Nico y Solci abrazados en una fotografía en blanco y negro',
+    // La imagen ya tiene los nombres: se muestra completa, sin textos encima.
+    imageIncludesText: true,
     position: 'center 35%',
     eyebrow: 'UN DÍA, UNA VIDA, CON VOS',
     title: 'Nos casamos',
