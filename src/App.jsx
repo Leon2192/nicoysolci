@@ -115,11 +115,6 @@ export default function App() {
 
       <div className="little-divider"><span /><Icon name="heart" /><span /></div>
       <EventSection event={data.ceremony} icon="rings" />
-      <EventSection event={data.celebration} icon="glasses" />
-
-      <section className="dress-code section-pad"><Reveal><Icon name="dress" /><h2>{data.dressCode.title}</h2><p>{data.dressCode.style}</p><p>{data.dressCode.text}</p></Reveal></section>
-
-      <section className="photo-section section-pad"><Reveal><Icon name="camera" /><span className="short-line" /><h2>{data.photos.title}</h2><p>{data.photos.text}</p><p>{data.photos.subtitle}</p><div className="photo-actions"><a className="button button-outline" href={data.photos.uploadUrl} {...external}>Subir fotos</a><a className="button button-outline" href={data.photos.albumUrl} {...external}>Ver fotos del álbum</a></div></Reveal></section>
 
       <section className="gallery-section" aria-label="Nuestra historia en fotos"><Reveal><span className="tiny-label">VOS, YO Y TODO LO QUE VIENE</span><Gallery photos={data.gallery} /><p className="gallery-quote">{data.galleryQuote}</p></Reveal></section>
 
