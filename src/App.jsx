@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { invitation as data } from './config/invitation.js';
 import Icon from './components/Icon.jsx';
+import Gallery from './components/Gallery.jsx';
 
 const names = `${data.couple.first} & ${data.couple.second}`;
 const external = { target: '_blank', rel: 'noopener noreferrer' };
@@ -120,7 +121,7 @@ export default function App() {
 
       <section className="photo-section section-pad"><Reveal><Icon name="camera" /><span className="short-line" /><h2>{data.photos.title}</h2><p>{data.photos.text}</p><p>{data.photos.subtitle}</p><div className="photo-actions"><a className="button button-outline" href={data.photos.uploadUrl} {...external}>Subir fotos</a><a className="button button-outline" href={data.photos.albumUrl} {...external}>Ver fotos del álbum</a></div></Reveal></section>
 
-      <section className="gallery-section" aria-label="Nuestra historia en fotos"><Reveal><span className="tiny-label">VOS, YO Y TODO LO QUE VIENE</span><div className="gallery">{data.gallery.map((photo, index) => <div className={`gallery-item gallery-item-${index + 1}`} key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" style={{ objectPosition: photo.position }} /></div>)}</div><p className="gallery-quote">{data.galleryQuote}</p></Reveal></section>
+      <section className="gallery-section" aria-label="Nuestra historia en fotos"><Reveal><span className="tiny-label">VOS, YO Y TODO LO QUE VIENE</span><Gallery photos={data.gallery} /><p className="gallery-quote">{data.galleryQuote}</p></Reveal></section>
 
       <section className="gifts section-pad"><Reveal><Icon name="gift" /><h2>{data.gifts.title}</h2><p className="intro-copy">{data.gifts.text}</p><button className="button" onClick={() => setGiftsOpen(true)}>Ver datos bancarios</button></Reveal></section>
 

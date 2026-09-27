@@ -3,6 +3,15 @@
 // Para fotos propias, guardalas en public/images y usá "/images/tu-foto.jpg".
 export const invitation = {
   couple: { first: 'Nico', second: 'Solci' },
+  social: {
+    // Opcional: completar con el dominio definitivo. En Vercel se detecta al compilar.
+    siteUrl: '',
+    description: 'Nos casamos. Te invitamos a compartir un día inolvidable con nosotros.',
+    image: '/min.png',
+    imageAlt: 'Nico y Solci · Nos casamos',
+    imageWidth: 350,
+    imageHeight: 350,
+  },
   weddingDate: '2027-09-27T20:00:00-03:00',
   endDate: '2027-09-28T05:00:00-03:00',
   timeZone: 'America/Argentina/Buenos_Aires',
@@ -46,13 +55,13 @@ export const invitation = {
     uploadUrl: 'https://photos.google.com/',
     albumUrl: 'https://photos.google.com/',
   },
-  gallery: [
-    { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=85', alt: 'Un abrazo para toda la vida', position: 'center' },
-    { src: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=700&q=85', alt: 'Juntos en nuestro día especial', position: 'center' },
-    { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85', alt: 'Una celebración llena de amor', position: 'center 55%' },
-    { src: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=700&q=85', alt: 'Pequeños detalles de una gran historia', position: 'center' },
-    { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=700&q=85', alt: 'El lugar donde vamos a celebrar', position: 'center' },
-  ],
+  // Las primeras cinco aparecen en el mosaico; todas se pueden recorrer en el visor.
+  // Cambiá el orden de los números para elegir las fotos destacadas.
+  gallery: [1, 2, 9, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((number) => ({
+    src: `/GALERIA/${number}.jpeg`,
+    alt: `Nico y Solci · Recuerdo ${number}`,
+    position: 'center',
+  })),
   galleryQuote: 'Lo mejor de la vida es compartirla con vos.',
   gifts: {
     title: 'Regalos',
