@@ -12,14 +12,14 @@
 .has-keyboard-focus .envelope-trigger:focus-visible .wax-seal { outline: 1px solid #dfe5c6; outline-offset: 7px; border-radius: 50%; }
 .envelope-art { position: absolute; inset: 0; perspective: 1800px; perspective-origin: 50% 50%; transform-style: preserve-3d; }
 .envelope-flap { position: absolute; transform-style: preserve-3d; backface-visibility: visible; }
-.envelope-flap-top, .envelope-flap-bottom { left: 0; width: 100%; height: 52%; }
-.envelope-flap-top { top: 0; transform-origin: center top; z-index: 3; }
-.envelope-flap-bottom { bottom: 0; transform-origin: center bottom; z-index: 2; }
+.envelope-flap-top, .envelope-flap-bottom { left: 0; width: 100%; }
+.envelope-flap-top { top: 0; height: 74%; transform-origin: center top; z-index: 3; }
+.envelope-flap-bottom { bottom: 0; height: 30%; transform-origin: center bottom; z-index: 2; }
 .envelope-flap-left, .envelope-flap-right { top: 0; height: 100%; width: 53%; z-index: 1; }
 .envelope-flap-left { left: 0; transform-origin: left center; }
 .envelope-flap-right { right: 0; transform-origin: right center; }
-.envelope-paper { display: block; width: 100%; height: 100%; overflow: visible; backface-visibility: visible; filter: drop-shadow(3px 8px 5px #25331d66); }
-.wax-seal { position: absolute; z-index: 4; left: 50%; top: 50%; display: block; width: clamp(116px, 30vw, 170px); aspect-ratio: 1; transform: translate(-50%, -50%) rotate(-9deg); filter: drop-shadow(3px 7px 5px #26321b88); transition: filter .25s; }
+.envelope-paper { display: block; width: 100%; height: 100%; overflow: visible; backface-visibility: visible; filter: drop-shadow(2px 5px 3px #24311c88); }
+.wax-seal { position: absolute; z-index: 4; left: 50%; top: 73%; display: block; width: min(clamp(124px, 36vw, 180px), 34dvh); aspect-ratio: 180 / 220; transform: translate(-50%, -50%) rotate(-7deg); filter: drop-shadow(3px 7px 5px #26321b88); transition: filter .25s; }
 .wax-seal-art { display: block; width: 100%; height: 100%; }
 .envelope-trigger:hover .wax-seal { filter: drop-shadow(3px 8px 6px #26321b88) brightness(1.045); }
 .is-opening .wax-seal { animation: seal-release .4s ease-in forwards; }

@@ -3,10 +3,10 @@ import './EnvelopeIntro.css';
 
 // Cada pieza es una solapa completa con su propia bisagra, no una mitad recortada.
 const paperShapes = {
-  top: { viewBox: '0 0 600 520', path: 'M0 0H600V170L320 494Q300 518 280 494L0 170Z', light: '#aab39d', dark: '#929f83' },
-  bottom: { viewBox: '0 0 600 520', path: 'M0 357 284 15Q300 0 316 15L600 357V520H0Z', light: '#a1ad94', dark: '#87967a' },
-  left: { viewBox: '0 0 318 1000', path: 'M0 145 318 520 0 868Z', light: '#96a287', dark: '#7c8c6e' },
-  right: { viewBox: '0 0 318 1000', path: 'M318 145 0 520 318 868Z', light: '#919f82', dark: '#778767' },
+  top: { viewBox: '0 0 600 740', path: 'M0 0H600V425L320 710Q300 734 280 710L0 425Z', light: '#929e83', dark: '#7d8b6e' },
+  bottom: { viewBox: '0 0 600 300', path: 'M0 300 284 15Q300 0 316 15L600 300Z', light: '#8a997a', dark: '#778667' },
+  left: { viewBox: '0 0 318 1000', path: 'M0 400 318 740 0 1000Z', light: '#859375', dark: '#6d7d5d' },
+  right: { viewBox: '0 0 318 1000', path: 'M318 400 0 740 318 1000Z', light: '#7e8d6d', dark: '#697a59' },
 };
 
 function EnvelopePaper({ side }) {
@@ -18,8 +18,8 @@ function EnvelopePaper({ side }) {
         <stop stopColor={shape.light} /><stop offset="1" stopColor={shape.dark} />
       </linearGradient>
       <filter id={`${id}-fibers`} x="0" y="0" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency=".055 .18" numOctaves="3" seed="12" stitchTiles="stitch" result="fibers" />
-        <feDiffuseLighting in="fibers" surfaceScale="2.6" diffuseConstant="1.1" lightingColor="#ffffff" result="paperRelief">
+        <feTurbulence type="fractalNoise" baseFrequency=".28 .34" numOctaves="3" seed="12" stitchTiles="stitch" result="fibers" />
+        <feDiffuseLighting in="fibers" surfaceScale=".65" diffuseConstant="1.1" lightingColor="#ffffff" result="paperRelief">
           <feDistantLight azimuth="225" elevation="55" />
         </feDiffuseLighting>
         <feBlend in="SourceGraphic" in2="paperRelief" mode="multiply" />
@@ -34,7 +34,7 @@ function EnvelopePaper({ side }) {
     <path fill={`url(#${id}-color)`} d={shape.path} filter={`url(#${id}-fibers)`} />
     <g clipPath={`url(#${id}-clip)`}>
       <path d={shape.path} filter={`url(#${id}-grain)`} opacity=".26" style={{ mixBlendMode: 'multiply' }} />
-      <path d={shape.path} fill="none" stroke="#e2e8d2" strokeOpacity=".4" strokeWidth="2.5" />
+      <path d={shape.path} fill="none" stroke="#c0cbb1" strokeOpacity=".2" strokeWidth="1.2" />
     </g>
   </svg>;
 }
@@ -43,33 +43,34 @@ function EnvelopePaper({ side }) {
 const lotus = 'M90 113C68 95 70 66 90 45c20 21 22 50 0 68ZM90 114C65 108 53 89 55 65c22 8 34 27 35 49ZM90 114c25-6 37-25 35-49-22 8-34 27-35 49ZM90 116C65 121 45 105 39 86c23 0 42 13 51 30ZM90 116c25 5 45-11 51-30-23 0-42 13-51 30ZM60 124q30 17 60 0';
 
 function WaxSeal() {
-  return <svg className="wax-seal-art" viewBox="0 0 180 180" aria-hidden="true">
+  return <svg className="wax-seal-art" viewBox="0 0 180 220" aria-hidden="true">
     <defs>
-      <linearGradient id="wax-outer" x1=".15" y1="0" x2=".85" y2="1">
-        <stop stopColor="#b5bd82" /><stop offset=".28" stopColor="#7b894c" /><stop offset=".65" stopColor="#44532b" /><stop offset="1" stopColor="#303d21" />
+      <linearGradient id="wax-outer" x1=".1" y1="0" x2=".85" y2="1">
+        <stop stopColor="#d0dcba" /><stop offset=".3" stopColor="#b8c89f" /><stop offset=".75" stopColor="#95aa7d" /><stop offset="1" stopColor="#7a9365" />
       </linearGradient>
-      <radialGradient id="wax-center" cx=".37" cy=".25" r=".85">
-        <stop stopColor="#89975c" /><stop offset=".6" stopColor="#63753f" /><stop offset="1" stopColor="#43562b" />
+      <radialGradient id="wax-center" cx=".33" cy=".25" r=".95">
+        <stop stopColor="#b9c8a3" /><stop offset=".65" stopColor="#a6b991" /><stop offset="1" stopColor="#8fa67a" />
       </radialGradient>
-      <linearGradient id="wax-rim" x1="0" y1="0" x2="1" y2="1">
-        <stop stopColor="#d0d5a0" /><stop offset=".4" stopColor="#87944e" /><stop offset=".65" stopColor="#34431e" /><stop offset="1" stopColor="#9da86b" />
-      </linearGradient>
       <filter id="wax-grain">
-        <feTurbulence type="fractalNoise" baseFrequency=".22" numOctaves="2" seed="6" />
+        <feTurbulence type="fractalNoise" baseFrequency=".38" numOctaves="2" seed="6" />
         <feColorMatrix type="saturate" values="0" />
       </filter>
-      <clipPath id="wax-face-clip"><circle cx="90" cy="89" r="59" /></clipPath>
+      <clipPath id="wax-face-clip"><ellipse cx="90" cy="111" rx="55" ry="82" /></clipPath>
     </defs>
-    <path fill="url(#wax-outer)" d="M91 8C104 5 113 12 124 14c17 3 26 13 30 26 4 10 13 17 14 31 4 13-1 23-1 34-1 14-10 20-16 32-8 13-19 15-30 21-13 6-23 10-36 7-12 1-20-7-32-9-15-5-20-16-29-26-8-10-7-23-11-35-4-14 2-23 5-35 3-14 13-20 20-31 9-11 20-13 32-17 8-3 14-2 21-4Z" />
-    <path d="M26 64C34 25 67 16 93 16c23-1 47 11 58 37" fill="none" stroke="#d4d7a1" strokeOpacity=".63" strokeWidth="3" strokeLinecap="round" />
-    <path d="M25 112c10 31 37 47 66 46 24 1 48-13 59-35" fill="none" stroke="#a4af72" strokeOpacity=".5" strokeWidth="2" strokeLinecap="round" />
-    <ellipse cx="91" cy="90" rx="66" ry="67" fill="#354621" />
-    <ellipse cx="89" cy="88" rx="65" ry="66" fill="url(#wax-rim)" />
-    <circle cx="90" cy="89" r="59" fill="url(#wax-center)" stroke="#3c4d24" strokeWidth="1.5" />
-    <path d="M37 102A55 55 0 0 0 143 102" fill="none" stroke="#b2be7c" strokeOpacity=".55" strokeWidth="1.5" />
-    <path d={lotus} transform="translate(1.1 1.5)" fill="none" stroke="#2f431c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <path d={lotus} transform="translate(-.6 -.6)" fill="none" stroke="#b4c386" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <g clipPath="url(#wax-face-clip)" opacity=".065" style={{ mixBlendMode: 'multiply' }}><rect width="180" height="180" filter="url(#wax-grain)" /></g>
+    <path fill="url(#wax-outer)" d="M90 9C128 6 158 51 159 109c3 55-24 99-68 102-43 4-72-37-71-97C18 55 48 12 90 9Z" />
+    <path d="M27 124C20 73 45 20 83 16c29-4 51 19 63 49" fill="none" stroke="#e0e8cb" strokeOpacity=".6" strokeWidth="3" strokeLinecap="round" />
+    <path d="M32 162c13 29 35 44 59 43 31-2 52-27 60-60" fill="none" stroke="#657f51" strokeOpacity=".4" strokeWidth="2.5" strokeLinecap="round" />
+    <path fill="#6b8457" opacity=".6" d="M91 27c33 0 55 35 55 81 3 49-19 88-55 91-36 2-59-33-58-81C31 66 55 29 91 27Z" />
+    <path fill="url(#wax-center)" d="M91 32c30 0 49 33 50 76 2 46-18 82-51 85-32 2-52-32-52-76-1-48 21-83 53-85Z" />
+    <path d="M43 85c6-31 24-56 46-57 25-2 45 25 52 53" fill="none" stroke="#e0e9cd" strokeOpacity=".62" strokeWidth="3" strokeLinecap="round" />
+    <path d="M41 142c7 33 24 52 48 53 25-1 43-24 49-53" fill="none" stroke="#cfdebb" strokeOpacity=".5" strokeWidth="2" strokeLinecap="round" />
+    <g transform="translate(22.5 30) scale(.75)">
+      <path d={lotus} transform="translate(1.3 1.6)" fill="none" stroke="#617e4e" strokeOpacity=".75" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={lotus} transform="translate(-.5 -.5)" fill="none" stroke="#e0eaca" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <path d="M91 130c-5 15 3 29 19 41m-18-27c9-10 17-10 24-9-5 8-14 12-24 9" transform="translate(1 1.5)" fill="none" stroke="#617e4e" strokeOpacity=".7" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M91 130c-5 15 3 29 19 41m-18-27c9-10 17-10 24-9-5 8-14 12-24 9" fill="none" stroke="#e0eaca" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <g clipPath="url(#wax-face-clip)" opacity=".035" style={{ mixBlendMode: 'multiply' }}><rect width="180" height="220" filter="url(#wax-grain)" /></g>
   </svg>;
 }
 
