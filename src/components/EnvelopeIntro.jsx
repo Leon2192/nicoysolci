@@ -39,41 +39,6 @@ function EnvelopePaper({ side }) {
   </svg>;
 }
 
-// Pétalo central, dos pares de pétalos laterales y la base de la flor de loto.
-const lotus = 'M90 113C68 95 70 66 90 45c20 21 22 50 0 68ZM90 114C65 108 53 89 55 65c22 8 34 27 35 49ZM90 114c25-6 37-25 35-49-22 8-34 27-35 49ZM90 116C65 121 45 105 39 86c23 0 42 13 51 30ZM90 116c25 5 45-11 51-30-23 0-42 13-51 30ZM60 124q30 17 60 0';
-
-function WaxSeal() {
-  return <svg className="wax-seal-art" viewBox="0 0 180 220" aria-hidden="true">
-    <defs>
-      <linearGradient id="wax-outer" x1=".1" y1="0" x2=".85" y2="1">
-        <stop stopColor="#d0dcba" /><stop offset=".3" stopColor="#b8c89f" /><stop offset=".75" stopColor="#95aa7d" /><stop offset="1" stopColor="#7a9365" />
-      </linearGradient>
-      <radialGradient id="wax-center" cx=".33" cy=".25" r=".95">
-        <stop stopColor="#b9c8a3" /><stop offset=".65" stopColor="#a6b991" /><stop offset="1" stopColor="#8fa67a" />
-      </radialGradient>
-      <filter id="wax-grain">
-        <feTurbulence type="fractalNoise" baseFrequency=".38" numOctaves="2" seed="6" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <clipPath id="wax-face-clip"><ellipse cx="90" cy="111" rx="55" ry="82" /></clipPath>
-    </defs>
-    <path fill="url(#wax-outer)" d="M90 9C128 6 158 51 159 109c3 55-24 99-68 102-43 4-72-37-71-97C18 55 48 12 90 9Z" />
-    <path d="M27 124C20 73 45 20 83 16c29-4 51 19 63 49" fill="none" stroke="#e0e8cb" strokeOpacity=".6" strokeWidth="3" strokeLinecap="round" />
-    <path d="M32 162c13 29 35 44 59 43 31-2 52-27 60-60" fill="none" stroke="#657f51" strokeOpacity=".4" strokeWidth="2.5" strokeLinecap="round" />
-    <path fill="#6b8457" opacity=".6" d="M91 27c33 0 55 35 55 81 3 49-19 88-55 91-36 2-59-33-58-81C31 66 55 29 91 27Z" />
-    <path fill="url(#wax-center)" d="M91 32c30 0 49 33 50 76 2 46-18 82-51 85-32 2-52-32-52-76-1-48 21-83 53-85Z" />
-    <path d="M43 85c6-31 24-56 46-57 25-2 45 25 52 53" fill="none" stroke="#e0e9cd" strokeOpacity=".62" strokeWidth="3" strokeLinecap="round" />
-    <path d="M41 142c7 33 24 52 48 53 25-1 43-24 49-53" fill="none" stroke="#cfdebb" strokeOpacity=".5" strokeWidth="2" strokeLinecap="round" />
-    <g transform="translate(22.5 30) scale(.75)">
-      <path d={lotus} transform="translate(1.3 1.6)" fill="none" stroke="#617e4e" strokeOpacity=".75" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={lotus} transform="translate(-.5 -.5)" fill="none" stroke="#e0eaca" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </g>
-    <path d="M91 130c-5 15 3 29 19 41m-18-27c9-10 17-10 24-9-5 8-14 12-24 9" transform="translate(1 1.5)" fill="none" stroke="#617e4e" strokeOpacity=".7" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M91 130c-5 15 3 29 19 41m-18-27c9-10 17-10 24-9-5 8-14 12-24 9" fill="none" stroke="#e0eaca" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    <g clipPath="url(#wax-face-clip)" opacity=".035" style={{ mixBlendMode: 'multiply' }}><rect width="180" height="220" filter="url(#wax-grain)" /></g>
-  </svg>;
-}
-
 export default function EnvelopeIntro({ couple, config, onBegin, onComplete }) {
   const [opening, setOpening] = useState(false);
   const [keyboardFocus, setKeyboardFocus] = useState(false);
@@ -129,7 +94,7 @@ export default function EnvelopeIntro({ couple, config, onBegin, onComplete }) {
         <span className="envelope-flap envelope-flap-right"><EnvelopePaper side="right" /></span>
         <span className="envelope-flap envelope-flap-bottom"><EnvelopePaper side="bottom" /></span>
         <span className="envelope-flap envelope-flap-top"><EnvelopePaper side="top" /></span>
-        <span className="wax-seal"><WaxSeal /></span>
+        <span className="wax-seal"><img className="wax-seal-art" src={config.sealImage} alt="" width="1100" height="1429" draggable="false" fetchPriority="high" /></span>
       </span>
     </button>
     <p id="envelope-instruction" className="sr-only" aria-live="polite">{opening ? config.openingText : config.hint}</p>

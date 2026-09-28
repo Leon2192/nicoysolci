@@ -8,6 +8,7 @@ export const invitation = {
   couple: { first: 'Nico', second: 'Solci' },
   entrance: {
     enabled: true,
+    sealImage: '/assets/lacre-loto.png',
     hint: 'Tocá el sello para abrir el sobre',
     openingText: 'Con mucho amor, para vos…',
   },

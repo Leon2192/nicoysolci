@@ -19,9 +19,9 @@
 .envelope-flap-left { left: 0; transform-origin: left center; }
 .envelope-flap-right { right: 0; transform-origin: right center; }
 .envelope-paper { display: block; width: 100%; height: 100%; overflow: visible; backface-visibility: visible; filter: drop-shadow(2px 5px 3px #24311c88); }
-.wax-seal { position: absolute; z-index: 4; left: 50%; top: 73%; display: block; width: min(clamp(124px, 36vw, 180px), 34dvh); aspect-ratio: 180 / 220; transform: translate(-50%, -50%) rotate(-7deg); filter: drop-shadow(3px 7px 5px #26321b88); transition: filter .25s; }
-.wax-seal-art { display: block; width: 100%; height: 100%; }
-.envelope-trigger:hover .wax-seal { filter: drop-shadow(3px 8px 6px #26321b88) brightness(1.045); }
+.wax-seal { position: absolute; z-index: 4; left: 50%; top: 73%; display: block; width: min(clamp(124px, 36vw, 180px), 34dvh); aspect-ratio: 1100 / 1429; transform: translate(-50%, -50%) rotate(-4deg); filter: drop-shadow(2px 4px 3px #26321b66); transition: filter .25s; }
+.wax-seal-art { display: block; width: 100%; height: 100%; object-fit: contain; user-select: none; pointer-events: none; }
+.envelope-trigger:hover .wax-seal { filter: drop-shadow(2px 5px 4px #26321b66) brightness(1.045); }
 .is-opening .wax-seal { animation: seal-release .4s ease-in forwards; }
 .is-opening .envelope-flap { will-change: transform; }
 .is-opening .envelope-flap-top { animation: flap-unfold-top 1.6s .3s cubic-bezier(.4,0,.2,1) forwards; }
