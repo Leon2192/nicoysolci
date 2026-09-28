@@ -1,49 +1,46 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './EnvelopeIntro.css';
 
-// Dos mitades del mismo papel abren el sobre hacia arriba y hacia abajo.
+// Cada pieza es una solapa completa con su propia bisagra, no una mitad recortada.
+const paperShapes = {
+  top: { viewBox: '0 0 600 520', path: 'M0 0H600V170L320 494Q300 518 280 494L0 170Z', light: '#aab39d', dark: '#929f83' },
+  bottom: { viewBox: '0 0 600 520', path: 'M0 357 284 15Q300 0 316 15L600 357V520H0Z', light: '#a1ad94', dark: '#87967a' },
+  left: { viewBox: '0 0 318 1000', path: 'M0 145 318 520 0 868Z', light: '#96a287', dark: '#7c8c6e' },
+  right: { viewBox: '0 0 318 1000', path: 'M318 145 0 520 318 868Z', light: '#919f82', dark: '#778767' },
+};
+
 function EnvelopePaper({ side }) {
   const id = `paper-${side}`;
-  return <svg className="envelope-paper" viewBox="0 0 600 1000" preserveAspectRatio="none" aria-hidden="true">
+  const shape = paperShapes[side];
+  return <svg className="envelope-paper" viewBox={shape.viewBox} preserveAspectRatio="none" aria-hidden="true">
     <defs>
-      <linearGradient id={`${id}-base`} x1="0" y1="0" x2="1" y2="1">
-        <stop stopColor="#9ca48f" /><stop offset="1" stopColor="#7c876e" />
+      <linearGradient id={`${id}-color`} x1="0" y1="0" x2=".8" y2="1">
+        <stop stopColor={shape.light} /><stop offset="1" stopColor={shape.dark} />
       </linearGradient>
-      <linearGradient id={`${id}-left`} x1="0" y1="0" x2="1" y2=".4">
-        <stop stopColor="#9da791" /><stop offset="1" stopColor="#89947b" />
-      </linearGradient>
-      <linearGradient id={`${id}-right`} x1="1" y1="0" x2="0" y2=".6">
-        <stop stopColor="#939e85" /><stop offset="1" stopColor="#768365" />
-      </linearGradient>
-      <linearGradient id={`${id}-bottom`} x1="0" y1="0" x2=".6" y2="1">
-        <stop stopColor="#a8b09c" /><stop offset="1" stopColor="#8d997f" />
-      </linearGradient>
-      <linearGradient id={`${id}-flap`} x1="0" y1="0" x2=".7" y2="1">
-        <stop stopColor="#b0b7a5" /><stop offset=".65" stopColor="#a6af99" /><stop offset="1" stopColor="#939f82" />
-      </linearGradient>
-      <filter id={`${id}-shadow`} x="-20%" y="-20%" width="150%" height="160%">
-        <feDropShadow dx="5" dy="12" stdDeviation="9" floodColor="#26351c" floodOpacity=".48" />
-        <feDropShadow dx="1" dy="2" stdDeviation="1" floodColor="#25351a" floodOpacity=".4" />
+      <filter id={`${id}-fibers`} x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency=".055 .18" numOctaves="3" seed="12" stitchTiles="stitch" result="fibers" />
+        <feDiffuseLighting in="fibers" surfaceScale="2.6" diffuseConstant="1.1" lightingColor="#ffffff" result="paperRelief">
+          <feDistantLight azimuth="225" elevation="55" />
+        </feDiffuseLighting>
+        <feBlend in="SourceGraphic" in2="paperRelief" mode="multiply" />
+        <feComposite in2="SourceAlpha" operator="in" />
       </filter>
       <filter id={`${id}-grain`} x="0" y="0" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="14" stitchTiles="stitch" />
+        <feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" seed="4" stitchTiles="stitch" />
         <feColorMatrix type="saturate" values="0" />
       </filter>
+      <clipPath id={`${id}-clip`}><path d={shape.path} /></clipPath>
     </defs>
-    <path fill={`url(#${id}-base)`} d="M0 0H600V1000H0Z" />
-    <path fill={`url(#${id}-left)`} d="M0 145 318 520 0 868Z" />
-    <path fill={`url(#${id}-right)`} d="M600 145 282 520 600 868Z" />
-    <path fill={`url(#${id}-bottom)`} d="M0 837 284 495Q300 480 316 495L600 837V1000H0Z" />
-    <path d="M0 837 284 495Q300 480 316 495L600 837" fill="none" stroke="#dee3d0" strokeOpacity=".35" strokeWidth="1.5" />
-    <path d="M0 842 284 500Q300 485 316 500L600 842" fill="none" stroke="#526346" strokeOpacity=".18" strokeWidth="2" />
-    <path filter={`url(#${id}-shadow)`} fill={`url(#${id}-flap)`} d="M0 0H600V170L320 494Q300 518 280 494L0 170Z" />
-    <path d="M1 171 281 493Q300 514 319 493L599 171" fill="none" stroke="#cdd5bd" strokeOpacity=".55" strokeWidth="1.4" />
-    <path fill="#566346" opacity=".15" filter={`url(#${id}-grain)`} d="M0 0H600V1000H0Z" style={{ mixBlendMode: 'multiply' }} />
-    <path fill="#fff" opacity=".085" filter={`url(#${id}-grain)`} d="M0 0H600V1000H0Z" style={{ mixBlendMode: 'soft-light' }} />
+    <path fill={`url(#${id}-color)`} d={shape.path} filter={`url(#${id}-fibers)`} />
+    <g clipPath={`url(#${id}-clip)`}>
+      <path d={shape.path} filter={`url(#${id}-grain)`} opacity=".26" style={{ mixBlendMode: 'multiply' }} />
+      <path d={shape.path} fill="none" stroke="#e2e8d2" strokeOpacity=".4" strokeWidth="2.5" />
+    </g>
   </svg>;
 }
 
-const sprig = 'M69 135C83 112 100 84 103 47M79 117C58 116 52 101 55 89c16 6 25 15 24 28Zm7-17c20 2 34-7 38-21-20 0-32 7-38 21Zm7-15C75 82 69 70 72 58c15 5 23 15 21 27Zm7-15c15-3 25-14 23-25-14 3-23 12-23 25Zm3-23c-10-7-9-17-2-24 7 8 9 15 2 24Z';
+// Pétalo central, dos pares de pétalos laterales y la base de la flor de loto.
+const lotus = 'M90 113C68 95 70 66 90 45c20 21 22 50 0 68ZM90 114C65 108 53 89 55 65c22 8 34 27 35 49ZM90 114c25-6 37-25 35-49-22 8-34 27-35 49ZM90 116C65 121 45 105 39 86c23 0 42 13 51 30ZM90 116c25 5 45-11 51-30-23 0-42 13-51 30ZM60 124q30 17 60 0';
 
 function WaxSeal() {
   return <svg className="wax-seal-art" viewBox="0 0 180 180" aria-hidden="true">
@@ -70,8 +67,8 @@ function WaxSeal() {
     <ellipse cx="89" cy="88" rx="65" ry="66" fill="url(#wax-rim)" />
     <circle cx="90" cy="89" r="59" fill="url(#wax-center)" stroke="#3c4d24" strokeWidth="1.5" />
     <path d="M37 102A55 55 0 0 0 143 102" fill="none" stroke="#b2be7c" strokeOpacity=".55" strokeWidth="1.5" />
-    <path d={sprig} transform="translate(1.1 1.5)" fill="none" stroke="#2f431c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <path d={sprig} transform="translate(-.6 -.6)" fill="none" stroke="#b4c386" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d={lotus} transform="translate(1.1 1.5)" fill="none" stroke="#2f431c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    <path d={lotus} transform="translate(-.6 -.6)" fill="none" stroke="#b4c386" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     <g clipPath="url(#wax-face-clip)" opacity=".065" style={{ mixBlendMode: 'multiply' }}><rect width="180" height="180" filter="url(#wax-grain)" /></g>
   </svg>;
 }
@@ -91,7 +88,7 @@ export default function EnvelopeIntro({ couple, config, onBegin, onComplete }) {
 
   useEffect(() => {
     if (!opening) return;
-    const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 2100;
+    const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 2700;
     const timer = window.setTimeout(onComplete, duration);
     return () => window.clearTimeout(timer);
   }, [opening, onComplete]);
@@ -127,8 +124,10 @@ export default function EnvelopeIntro({ couple, config, onBegin, onComplete }) {
       onPointerDown={() => setKeyboardFocus(false)}
     >
       <span className="envelope-art" aria-hidden="true">
-        <span className="envelope-panel envelope-panel-top"><EnvelopePaper side="top" /></span>
-        <span className="envelope-panel envelope-panel-bottom"><EnvelopePaper side="bottom" /></span>
+        <span className="envelope-flap envelope-flap-left"><EnvelopePaper side="left" /></span>
+        <span className="envelope-flap envelope-flap-right"><EnvelopePaper side="right" /></span>
+        <span className="envelope-flap envelope-flap-bottom"><EnvelopePaper side="bottom" /></span>
+        <span className="envelope-flap envelope-flap-top"><EnvelopePaper side="top" /></span>
         <span className="wax-seal"><WaxSeal /></span>
       </span>
     </button>
