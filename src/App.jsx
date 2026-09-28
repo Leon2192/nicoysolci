@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { invitation as data } from './config/invitation.js';
 import Icon from './components/Icon.jsx';
 import Gallery from './components/Gallery.jsx';
+import EnvelopeIntro from './components/EnvelopeIntro.jsx';
 
 const names = `${data.couple.first} & ${data.couple.second}`;
 const external = { target: '_blank', rel: 'noopener noreferrer' };
@@ -83,10 +84,22 @@ function GiftDetails({ open, onClose }) {
 
 export default function App() {
   const [giftsOpen, setGiftsOpen] = useState(false);
+  const [introVisible, setIntroVisible] = useState(data.entrance.enabled);
+  const [introOpening, setIntroOpening] = useState(false);
+  const mainRef = useRef(null);
+  const openInvitation = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setIntroVisible(false);
+  }, []);
   useEffect(() => { document.title = `${names} · Nos casamos`; }, []);
+  useEffect(() => {
+    if (!introVisible) mainRef.current?.focus({ preventScroll: true });
+  }, [introVisible]);
   return <>
+    {introVisible && <EnvelopeIntro couple={data.couple} config={data.entrance} onBegin={() => setIntroOpening(true)} onComplete={openInvitation} />}
+    <div inert={introVisible} className={introOpening ? 'invitation-unwrapping' : undefined}>
     <a className="skip-link" href="#bienvenida">Ir a la invitación</a>
-    <main className="invitation">
+    <main className="invitation" ref={mainRef} tabIndex={-1}>
       <header className={`hero${data.hero.imageIncludesText ? ' hero-artwork' : ''}`}>
         <img className="hero-image" src={data.hero.image} alt={data.hero.alt} style={{ objectPosition: data.hero.position }} fetchPriority="high" />
         {data.hero.imageIncludesText ? <h1 className="sr-only">{names} · {data.hero.title}</h1> : <>
@@ -118,5 +131,6 @@ export default function App() {
       <footer><Reveal><p className="footer-names">{names}</p><p>{data.closing}</p><Icon name="heart" /></Reveal></footer>
     </main>
     <GiftDetails open={giftsOpen} onClose={() => setGiftsOpen(false)} />
+    </div>
   </>;
 }

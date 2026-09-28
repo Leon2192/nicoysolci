@@ -1,0 +1,33 @@
+.envelope-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.envelope-trigger { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: transparent; isolation: isolate; -webkit-tap-highlight-color: transparent; }
+.envelope-trigger:focus { outline: none; }
+.has-keyboard-focus .envelope-trigger:focus-visible .wax-seal { outline: 1px solid #dfe5c6; outline-offset: 7px; border-radius: 50%; }
+.envelope-art { position: absolute; inset: 0; perspective: 1600px; }
+.envelope-panel { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; backface-visibility: hidden; }
+.envelope-panel-top { top: 0; transform-origin: center top; }
+.envelope-panel-bottom { bottom: 0; transform-origin: center bottom; }
+.envelope-paper { position: absolute; left: 0; height: 200%; width: 100%; display: block; }
+.envelope-panel-top .envelope-paper { top: 0; }
+.envelope-panel-bottom .envelope-paper { bottom: 0; }
+.wax-seal { position: absolute; z-index: 3; left: 50%; top: 50%; display: block; width: clamp(116px, 30vw, 170px); aspect-ratio: 1; transform: translate(-50%, -50%) rotate(-9deg); filter: drop-shadow(3px 7px 5px #26321b88); transition: filter .25s; }
+.wax-seal-art { display: block; width: 100%; height: 100%; }
+.envelope-trigger:hover .wax-seal { filter: drop-shadow(3px 8px 6px #26321b88) brightness(1.045); }
+.is-opening .wax-seal { animation: seal-release .45s ease-in forwards; }
+.is-opening .envelope-panel { will-change: transform; }
+.is-opening .envelope-panel-top { animation: envelope-open-top 1.5s .35s cubic-bezier(.55,0,.2,1) forwards; }
+.is-opening .envelope-panel-bottom { animation: envelope-open-bottom 1.5s .35s cubic-bezier(.55,0,.2,1) forwards; }
+.envelope-intro.is-opening { animation: envelope-intro-dismiss .2s 1.85s ease forwards; }
+.invitation-unwrapping .hero { animation: invitation-unveil 1.4s .35s ease-out both; }
+@keyframes seal-release { to { opacity: 0; transform: translate(-50%, -50%) rotate(4deg) scale(1.12); } }
+@keyframes envelope-open-top { to { transform: translateY(-105%) rotateX(12deg); } }
+@keyframes envelope-open-bottom { to { transform: translateY(105%) rotateX(-12deg); } }
+@keyframes envelope-intro-dismiss { to { opacity: 0; } }
+@keyframes invitation-unveil { from { opacity: .5; filter: blur(2px); transform: scale(1.025); } to { opacity: 1; filter: blur(0); transform: none; } }

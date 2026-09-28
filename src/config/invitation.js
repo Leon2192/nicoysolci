@@ -6,6 +6,11 @@ const eventDate = '2027-04-02T19:00:00-03:00';
 
 export const invitation = {
   couple: { first: 'Nico', second: 'Solci' },
+  entrance: {
+    enabled: true,
+    hint: 'Tocá el sello para abrir el sobre',
+    openingText: 'Con mucho amor, para vos…',
+  },
   social: {
     // Opcional: completar con el dominio definitivo. En Vercel se detecta al compilar.
     siteUrl: '',
