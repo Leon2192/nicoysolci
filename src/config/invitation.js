@@ -1,5 +1,5 @@
 // EDITÁ LOS DATOS DE LA INVITACIÓN ACÁ.
-// Los datos bancarios siguen siendo de ejemplo.
+// Datos bancarios proporcionados por los titulares.
 // Para fotos propias, guardalas en public/images y usá "/images/tu-foto.jpg".
 // Fecha única para la cuenta regresiva y todas las secciones (hora argentina).
 const eventDate = '2027-04-02T19:00:00-03:00';
@@ -74,10 +74,10 @@ export const invitation = {
   gifts: {
     title: 'Regalos',
     text: 'Lo más importante es tu presencia. Pero si deseás hacernos un regalo, te compartimos nuestros datos.',
-    bank: 'Banco de ejemplo',
-    holder: 'Nicolás y Sol · Datos de ejemplo',
-    alias: 'NICO.SOLCI.BODA',
-    cbu: '0000000000000000000000',
+    bank: 'Banco del Sol',
+    holder: 'Nicolas Agustin Atala',
+    alias: 'Solci.Tango.',
+    cbu: '3108100900010003996143',
   },
   rsvp: {
     title: 'Confirmá tu asistencia',
