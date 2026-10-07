@@ -65,7 +65,7 @@ export const invitation = {
   },
   // Las primeras cinco aparecen en el mosaico; todas se pueden recorrer en el visor.
   // Cambiá el orden de los números para elegir las fotos destacadas.
-  gallery: [1, 2, 9, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((number) => ({
+  gallery: [1, 2, 9, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((number) => ({
     src: `/GALERIA/${number}.jpeg`,
     alt: `Nico y Solci · Recuerdo ${number}`,
     position: 'center',
